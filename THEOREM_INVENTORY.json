@@ -1,0 +1,22 @@
+{
+  "run_id": "APCI-LEAN-AR0001",
+  "toolchain": "leanprover/lean4:v4.32.1",
+  "status": "PENDING_NATIVE_CI",
+  "declarations": [
+    {"name": "APCILeanAudit.exactCertificate_implies_fiberConstant", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.exactOnReachable_implies_fiberConstant", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.fiberConstant_implies_exactOnReachable", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.exactOnReachable_iff_fiberConstant", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.exactCertificate_iff_fiberConstant_and_decoderSpaceNonempty", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.exactCertificate_iff_fiberConstant", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.leftInverse_implies_injective", "source_target": "APC-T02"},
+    {"name": "APCILeanAudit.collision_persists_under_postprocessing", "source_target": "APC-T03"},
+    {"name": "APCILeanAudit.fin_succ_not_injective", "source_target": "APC-T04"},
+    {"name": "APCILeanAudit.fin_succ_has_collision", "source_target": "APC-T04"},
+    {"name": "APCILeanAudit.no_exact_decoder_one_more", "source_target": "APC-T04"},
+    {"name": "APCILeanAudit.EmptyBoundaryControl.fiberConstant_is_vacuous", "source_target": "CONTROL"},
+    {"name": "APCILeanAudit.EmptyBoundaryControl.total_decoder_does_not_exist", "source_target": "CONTROL"},
+    {"name": "APCILeanAudit.ConcreteCapacityControl.twoToOne_collision", "source_target": "CONTROL"},
+    {"name": "APCILeanAudit.ConcreteCapacityControl.twoToOne_no_leftInverse", "source_target": "CONTROL"}
+  ]
+}

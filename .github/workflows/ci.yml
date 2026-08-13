@@ -1,0 +1,48 @@
+name: APCI Lean audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Enforce source and inventory policy
+        run: ./scripts/policy_scan.sh
+
+      - name: Build and independently type-check
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          leanchecker: true
+          nanoda: true
+          nanoda-allow-sorry: false
+          use-mathlib-cache: false
+
+      - name: Produce logical-dependency receipt
+        run: |
+          mkdir -p audit
+          lake env lean Audit.lean | tee audit/axioms.txt
+          if grep -En '\bsorryAx\b' audit/axioms.txt; then
+            echo 'incomplete-proof dependency present in receipt' >&2
+            exit 1
+          fi
+
+      - name: Upload audit receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: apci-lean-audit-receipt
+          path: audit/axioms.txt
+          if-no-files-found: error
