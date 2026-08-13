@@ -16,11 +16,16 @@ def ExactCertificate {World : Type uWorld} {Trace : Type uTrace}
     (answer : World → Answer) : Prop :=
   ∃ decode : Trace → Answer, ∀ x, decode (trace x) = answer x
 
+/-- The subtype of trace values that the interface can actually produce. -/
+def Reachable {World : Type uWorld} {Trace : Type uTrace}
+    (trace : World → Trace) : Type uTrace :=
+  {t : Trace // ∃ x, trace x = t}
+
 /-- A decoder defined only on traces that the interface can actually produce. -/
 def ExactOnReachable {World : Type uWorld} {Trace : Type uTrace}
     {Answer : Type uAnswer} (trace : World → Trace)
     (answer : World → Answer) : Prop :=
-  ∃ decode : Set.range trace → Answer,
+  ∃ decode : Reachable trace → Answer,
     ∀ x, decode ⟨trace x, ⟨x, rfl⟩⟩ = answer x
 
 variable {World : Type uWorld} {Trace : Type uTrace} {Answer : Type uAnswer}
@@ -40,7 +45,7 @@ theorem exactOnReachable_implies_fiberConstant
   rcases h with ⟨decode, hdecode⟩
   intro x y hxy
   have hs :
-      (⟨trace x, ⟨x, rfl⟩⟩ : Set.range trace) =
+      (⟨trace x, ⟨x, rfl⟩⟩ : Reachable trace) =
       ⟨trace y, ⟨y, rfl⟩⟩ := by
     apply Subtype.ext
     exact hxy
@@ -52,7 +57,7 @@ theorem exactOnReachable_implies_fiberConstant
 theorem fiberConstant_implies_exactOnReachable
     (h : FiberConstant trace answer) : ExactOnReachable trace answer := by
   classical
-  let decode : Set.range trace → Answer :=
+  let decode : Reachable trace → Answer :=
     fun t => answer (Classical.choose t.property)
   refine ⟨decode, ?_⟩
   intro x
@@ -79,10 +84,10 @@ theorem exactCertificate_iff_fiberConstant_and_decoderSpaceNonempty :
     rcases fiberConstant_implies_exactOnReachable hfiber with
       ⟨decode, hdecode⟩
     classical
-    refine ⟨fun t => if ht : t ∈ Set.range trace then
+    refine ⟨fun t => if ht : ∃ x, trace x = t then
       decode ⟨t, ht⟩ else fallback t, ?_⟩
     intro x
-    rw [dif_pos (show trace x ∈ Set.range trace from ⟨x, rfl⟩)]
+    rw [dif_pos (show ∃ y, trace y = trace x from ⟨x, rfl⟩)]
     exact hdecode x
 
 /-- Convenient total-decoder corollary with a designated fallback answer. -/
