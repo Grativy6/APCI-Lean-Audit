@@ -33,6 +33,11 @@ The public declaration inventory is in `THEOREM_INVENTORY.json`. `Audit.lean`
 prints each declaration's logical dependencies. CI rejects an incomplete-proof
 dependency and publishes the receipt as an artifact.
 
+The required native gate is `lake build` plus the bundled `leanchecker`. An
+additional Rust `nanoda` replay was attempted and reached its export parser, but
+the current checker failed on Lean 4.32.1 input before checking a declaration.
+That compatibility result is recorded separately and is not reported as a pass.
+
 ## Non-goals
 
 The formalization does not define physics, entropy, thermodynamic work,

@@ -22,12 +22,14 @@ inverse of such an encoder.
 - The original audited run is source-locked by byte count and SHA-256. The
   predecessor archive is not published by default and is not a proof dependency.
 - CI builds the library, checks the explicit theorem inventory, emits dependency
-  receipts, runs `leanchecker`, and runs the independent `nanoda` checker.
+  receipts, and runs the bundled `leanchecker` replay.
 - Proof holes, custom logical postulates, nonempty dependency manifests, and
   selected proof escapes are rejected by policy.
 
 Read [`AUDIT_SCOPE.md`](AUDIT_SCOPE.md) for the exact theorem boundary and
 [`AUTHORITY_CEILING.md`](AUTHORITY_CEILING.md) before interpreting the result.
+The attempted independent `nanoda` replay and its Lean 4.32.1 parser blocker are
+recorded in [`audit/NANODA_COMPATIBILITY.md`](audit/NANODA_COMPATIBILITY.md).
 
 ## Reproduce
 
