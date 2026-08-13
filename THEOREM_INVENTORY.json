@@ -1,0 +1,33 @@
+{
+  "run_id": "APCI-LEAN-AR0001",
+  "toolchain": "leanprover/lean4:v4.32.1",
+  "status": "LEAN_PROVED_BOUNDED",
+  "verification": {
+    "commit": "de0fc17996ac06e2be7a96c518745de636bf3fc7",
+    "workflow_run": 31725279522,
+    "job": 94532003578,
+    "lake_build": "PASS",
+    "leanchecker": "PASS",
+    "dependency_receipt": "PASS_NO_SORRYAX",
+    "artifact_id": 9190984264,
+    "artifact_sha256": "3f9b7f698261d8598d272c533e1c595ca341309a3d0c71496dc6f724948af99e",
+    "nanoda": "BLOCKED_BEFORE_DECLARATION_CHECKING"
+  },
+  "declarations": [
+    {"name": "APCILeanAudit.exactCertificate_implies_fiberConstant", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.exactOnReachable_implies_fiberConstant", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.fiberConstant_implies_exactOnReachable", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.exactOnReachable_iff_fiberConstant", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.exactCertificate_iff_fiberConstant_and_decoderSpaceNonempty", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.exactCertificate_iff_fiberConstant", "source_target": "APC-T01"},
+    {"name": "APCILeanAudit.leftInverse_implies_injective", "source_target": "APC-T02"},
+    {"name": "APCILeanAudit.collision_persists_under_postprocessing", "source_target": "APC-T03"},
+    {"name": "APCILeanAudit.fin_succ_not_injective", "source_target": "APC-T04"},
+    {"name": "APCILeanAudit.fin_succ_has_collision", "source_target": "APC-T04"},
+    {"name": "APCILeanAudit.no_exact_decoder_one_more", "source_target": "APC-T04"},
+    {"name": "APCILeanAudit.EmptyBoundaryControl.fiberConstant_is_vacuous", "source_target": "CONTROL"},
+    {"name": "APCILeanAudit.EmptyBoundaryControl.total_decoder_does_not_exist", "source_target": "CONTROL"},
+    {"name": "APCILeanAudit.ConcreteCapacityControl.twoToOne_collision", "source_target": "CONTROL"},
+    {"name": "APCILeanAudit.ConcreteCapacityControl.twoToOne_no_leftInverse", "source_target": "CONTROL"}
+  ]
+}

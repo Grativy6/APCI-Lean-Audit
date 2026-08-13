@@ -1,0 +1,17 @@
+import APCILeanAudit
+
+#print axioms APCILeanAudit.exactCertificate_implies_fiberConstant
+#print axioms APCILeanAudit.exactOnReachable_implies_fiberConstant
+#print axioms APCILeanAudit.fiberConstant_implies_exactOnReachable
+#print axioms APCILeanAudit.exactOnReachable_iff_fiberConstant
+#print axioms APCILeanAudit.exactCertificate_iff_fiberConstant_and_decoderSpaceNonempty
+#print axioms APCILeanAudit.exactCertificate_iff_fiberConstant
+#print axioms APCILeanAudit.leftInverse_implies_injective
+#print axioms APCILeanAudit.collision_persists_under_postprocessing
+#print axioms APCILeanAudit.fin_succ_not_injective
+#print axioms APCILeanAudit.fin_succ_has_collision
+#print axioms APCILeanAudit.no_exact_decoder_one_more
+#print axioms APCILeanAudit.EmptyBoundaryControl.fiberConstant_is_vacuous
+#print axioms APCILeanAudit.EmptyBoundaryControl.total_decoder_does_not_exist
+#print axioms APCILeanAudit.ConcreteCapacityControl.twoToOne_collision
+#print axioms APCILeanAudit.ConcreteCapacityControl.twoToOne_no_leftInverse
