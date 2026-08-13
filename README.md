@@ -14,6 +14,10 @@ The Lean project also checks the finite one-more-than-capacity corollary: no
 map `Fin (n + 1) → Fin n` is injective, and therefore no decoder can be a left
 inverse of such an encoder.
 
+**Current result:** `LEAN_PROVED_BOUNDED`. Native CI run `31725279522` passed
+the complete Lake build, bundled `leanchecker`, source/inventory policy, and the
+15-declaration logical-dependency receipt with no `sorryAx` dependency.
+
 ## Audit boundary
 
 - Lean is pinned to `v4.32.1`.
@@ -30,6 +34,8 @@ Read [`AUDIT_SCOPE.md`](AUDIT_SCOPE.md) for the exact theorem boundary and
 [`AUTHORITY_CEILING.md`](AUTHORITY_CEILING.md) before interpreting the result.
 The attempted independent `nanoda` replay and its Lean 4.32.1 parser blocker are
 recorded in [`audit/NANODA_COMPATIBILITY.md`](audit/NANODA_COMPATIBILITY.md).
+The frozen native receipt is summarized in
+[`audit/AUDIT_REPORT.md`](audit/AUDIT_REPORT.md).
 
 ## Reproduce
 

@@ -1,0 +1,17 @@
+'APCILeanAudit.exactCertificate_implies_fiberConstant' does not depend on any axioms
+'APCILeanAudit.exactOnReachable_implies_fiberConstant' does not depend on any axioms
+'APCILeanAudit.fiberConstant_implies_exactOnReachable' depends on axioms: [Classical.choice]
+'APCILeanAudit.exactOnReachable_iff_fiberConstant' depends on axioms: [Classical.choice]
+'APCILeanAudit.exactCertificate_iff_fiberConstant_and_decoderSpaceNonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'APCILeanAudit.exactCertificate_iff_fiberConstant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'APCILeanAudit.leftInverse_implies_injective' does not depend on any axioms
+'APCILeanAudit.collision_persists_under_postprocessing' does not depend on any axioms
+'APCILeanAudit.fin_succ_not_injective' depends on axioms: [propext, Quot.sound]
+'APCILeanAudit.fin_succ_has_collision' depends on axioms: [propext, Classical.choice, Quot.sound]
+'APCILeanAudit.no_exact_decoder_one_more' depends on axioms: [propext, Quot.sound]
+'APCILeanAudit.EmptyBoundaryControl.fiberConstant_is_vacuous' does not depend on any axioms
+'APCILeanAudit.EmptyBoundaryControl.total_decoder_does_not_exist' does not depend on any axioms
+'APCILeanAudit.ConcreteCapacityControl.twoToOne_collision' depends on axioms: [propext]
+'APCILeanAudit.ConcreteCapacityControl.twoToOne_no_leftInverse' depends on axioms: [propext, Quot.sound]

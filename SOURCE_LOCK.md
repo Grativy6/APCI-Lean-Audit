@@ -14,8 +14,9 @@ The archive itself is not published in this repository by default. Its exact
 digest is recorded in `source/SOURCE_ARCHIVE.sha256`; the Lean statements and
 their checks do not consume the archive as a build input.
 
-This repository supersedes only the archive's `FORMALIZATION_PENDING` status for
-the declarations actually accepted by native CI. It does not promote the
+Native CI run `31725279522` supersedes the archive's `FORMALIZATION_PENDING`
+status for APC-T02, APC-T03, and APC-T04, and adds a typed machine-checked form
+of APC-T01 with its total-decoder edge condition. It does not promote the
 archive's open bridges or conditional physical interpretations.
 
 Source file hashes recorded from the extracted packet:
