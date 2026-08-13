@@ -3,35 +3,31 @@ import APCILeanAudit.Interface
 namespace APCILeanAudit
 
 /-- Remove one designated value from a finite type, on the domain excluding it. -/
-private def eraseAt {n : Nat} (pivot x : Fin (n + 1)) (h : x ≠ pivot) :
-    Fin n :=
-  ⟨if x.val < pivot.val then x.val else x.val - 1, by
-    have hp := pivot.isLt
-    have hx := x.isLt
-    have hval : x.val ≠ pivot.val := by
-      intro heq
-      apply h
-      exact Fin.ext heq
-    split <;> omega⟩
+private def eraseFin {n : Nat} (pivot x : Fin (n + 1))
+    (hx : x ≠ pivot) : Fin n :=
+  if hlt : x.val < pivot.val then
+    ⟨x.val, by omega⟩
+  else
+    ⟨x.val - 1, by
+      have hne : x.val ≠ pivot.val := by
+        intro h
+        exact hx (Fin.ext h)
+      omega⟩
 
-private theorem eraseAt_injective {n : Nat} (pivot : Fin (n + 1))
-    {x y : Fin (n + 1)} (hx : x ≠ pivot) (hy : y ≠ pivot)
-    (h : eraseAt pivot x hx = eraseAt pivot y hy) : x = y := by
+private theorem eraseFin_injective {n : Nat} (pivot : Fin (n + 1))
+    {x z : Fin (n + 1)} (hx : x ≠ pivot) (hz : z ≠ pivot)
+    (h : eraseFin pivot x hx = eraseFin pivot z hz) : x = z := by
   apply Fin.ext
-  have hp := pivot.isLt
-  have hxl := x.isLt
-  have hyl := y.isLt
-  have hxval : x.val ≠ pivot.val := by
-    intro heq
-    apply hx
-    exact Fin.ext heq
-  have hyval : y.val ≠ pivot.val := by
-    intro heq
-    apply hy
-    exact Fin.ext heq
-  have hval := congrArg (fun z => z.val) h
-  simp only [eraseAt] at hval
-  split at hval <;> split at hval <;> omega
+  have hpivotx : x.val ≠ pivot.val := by
+    intro hval
+    exact hx (Fin.ext hval)
+  have hpivotz : z.val ≠ pivot.val := by
+    intro hval
+    exact hz (Fin.ext hval)
+  have hv := congrArg Fin.val h
+  by_cases hxp : x.val < pivot.val <;>
+    by_cases hzp : z.val < pivot.val <;>
+      simp [eraseFin, hxp, hzp] at hv <;> omega
 
 /-- Finite pigeonhole in the exact one-more-than-capacity form. -/
 theorem fin_succ_not_injective :
@@ -39,24 +35,23 @@ theorem fin_succ_not_injective :
       ¬ Function.Injective encode
   | 0, encode => by
       intro _
-      exact Fin.elim0 (encode 0)
+      exact (encode 0).elim0
   | n + 1, encode => by
       intro hinjective
-      let pivot : Fin (n + 1) := encode (Fin.last (n + 1))
-      let smaller : Fin (n + 1) → Fin n := fun x =>
-        eraseAt pivot (encode x.castSucc) (by
-          intro heq
-          have hdomain : x.castSucc = Fin.last (n + 1) := by
-            apply hinjective
-            exact heq
-          exact (Fin.ne_of_lt (Fin.castSucc_lt_last x)) hdomain)
+      let top : Fin (n + 2) := Fin.last (n + 1)
+      let pivot : Fin (n + 1) := encode top
+      have hne (x : Fin (n + 1)) : encode x.castSucc ≠ pivot := by
+        intro heq
+        have hdomain : x.castSucc = top := hinjective heq
+        exact (Fin.ne_of_lt (Fin.castSucc_lt_last x)) hdomain
+      let smaller : Fin (n + 1) → Fin n :=
+        fun x => eraseFin pivot (encode x.castSucc) (hne x)
       have hsmaller : Function.Injective smaller := by
-        intro x y hxy
-        dsimp only [smaller] at hxy
-        have hencoded : encode x.castSucc = encode y.castSucc := by
-          apply eraseAt_injective pivot
-          exact hxy
-        exact Fin.castSucc_inj.mp (hinjective hencoded)
+        intro x z hxz
+        apply Fin.castSucc_inj.mp
+        apply hinjective
+        apply eraseFin_injective pivot (hne x) (hne z)
+        exact hxz
       exact fin_succ_not_injective n smaller hsmaller
 
 theorem fin_succ_has_collision (n : Nat)
