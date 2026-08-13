@@ -58,11 +58,13 @@ theorem fin_succ_has_collision (n : Nat)
     (encode : Fin (n + 1) → Fin n) :
     ∃ x y, x ≠ y ∧ encode x = encode y := by
   classical
-  by_contra hcollision
-  apply fin_succ_not_injective n encode
-  intro x y hxy
-  by_contra hne
-  exact hcollision ⟨x, y, hne, hxy⟩
+  apply Classical.byContradiction
+  intro hcollision
+  exact fin_succ_not_injective n encode (by
+    intro x y hxy
+    apply Classical.byContradiction
+    intro hne
+    exact hcollision ⟨x, y, hne, hxy⟩)
 
 /-- No decoder can recover all `n+1` inputs from only `n` trace values. -/
 theorem no_exact_decoder_one_more (n : Nat)
