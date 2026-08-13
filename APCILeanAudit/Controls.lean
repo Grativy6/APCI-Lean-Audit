@@ -28,7 +28,7 @@ theorem twoToOne_collision : twoToOne 0 = twoToOne 1 := rfl
 
 theorem twoToOne_no_leftInverse :
     ¬ ∃ decode : Fin 1 → Fin 2, Function.LeftInverse decode twoToOne := by
-  exact no_exact_decoder_one_more twoToOne
+  exact no_exact_decoder_one_more 1 twoToOne
 
 end ConcreteCapacityControl
 
