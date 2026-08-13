@@ -8,11 +8,6 @@ if [[ "$actual" != "$expected" ]]; then
   exit 1
 fi
 
-if [[ -e lake-manifest.json ]]; then
-  echo 'unexpected dependency manifest' >&2
-  exit 1
-fi
-
 if grep -En '^[[:space:]]*require\b' lakefile.lean; then
   echo 'third-party Lake dependencies are prohibited' >&2
   exit 1
@@ -44,4 +39,4 @@ if [[ "$actual_source" != "$expected_source" ]]; then
 fi
 ./scripts/check_inventory.py
 
-echo "policy pass: ${#sources[@]} Lean sources; pinned core+Std boundary"
+echo "policy pass: ${#sources[@]} Lean sources; empty manifest; pinned core+Std boundary"

@@ -23,7 +23,7 @@ inverse of such an encoder.
   predecessor archive is not published by default and is not a proof dependency.
 - CI builds the library, checks the explicit theorem inventory, emits dependency
   receipts, runs `leanchecker`, and runs the independent `nanoda` checker.
-- Proof holes, custom logical postulates, hidden dependency manifests, and
+- Proof holes, custom logical postulates, nonempty dependency manifests, and
   selected proof escapes are rejected by policy.
 
 Read [`AUDIT_SCOPE.md`](AUDIT_SCOPE.md) for the exact theorem boundary and

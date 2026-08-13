@@ -12,6 +12,10 @@ ROOT = Path(__file__).resolve().parents[1]
 inventory = json.loads((ROOT / "THEOREM_INVENTORY.json").read_text())
 names = [entry["name"] for entry in inventory["declarations"]]
 
+manifest = json.loads((ROOT / "lake-manifest.json").read_text())
+if manifest.get("name") != "apci-lean-audit" or manifest.get("packages") != []:
+    raise SystemExit("Lake manifest must identify this package and contain no dependencies")
+
 if len(names) != len(set(names)):
     raise SystemExit("duplicate declaration in THEOREM_INVENTORY.json")
 
