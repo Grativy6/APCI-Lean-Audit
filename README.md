@@ -6,8 +6,8 @@ It is deliberately smaller than the surrounding conceptual packet.
 
 The formal target is an interface theorem:
 
-> An answer can be certified from a declared trace exactly when it is constant
-> on that trace's reachable fibers. If an interface collapses two alternatives,
+> An answer can be certified on reachable trace values exactly when it is
+> constant on that trace's reachable fibers. If an interface collapses two alternatives,
 > deterministic post-processing of that trace cannot separate them again.
 
 The Lean project also checks the finite one-more-than-capacity corollary: no

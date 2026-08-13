@@ -25,11 +25,11 @@ if grep -En '\b(sorry|admit|axiom|opaque|unsafe|native_decide|run_tac)\b' "${sou
 fi
 
 while IFS= read -r line; do
-  if [[ ! "$line" =~ ^import\ (Lake|Std|APCILeanAudit)(\.[[:alnum:]_]+)*$ ]]; then
+  if [[ ! "$line" =~ ^[[:space:]]*import[[:space:]]+(Lake|Std|APCILeanAudit)(\.[[:alnum:]_]+)*[[:space:]]*$ ]]; then
     echo "non-core/non-local import: $line" >&2
     exit 1
   fi
-done < <(grep -hE '^import ' "${sources[@]}")
+done < <(grep -hE '^[[:space:]]*import[[:space:]]+' "${sources[@]}")
 
 expected_source='4c889bb710defdde74c340a47182be31b59fe4c86fabaace403c9c3445420ff8  Abstract_Physical_Certification_Impossibility_Run_0001.zip'
 actual_source="$(tr -d '\r\n' < source/SOURCE_ARCHIVE.sha256)"

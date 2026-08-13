@@ -20,7 +20,9 @@ if len(names) != len(set(names)):
     raise SystemExit("duplicate declaration in THEOREM_INVENTORY.json")
 
 audit_text = (ROOT / "Audit.lean").read_text()
-audited = re.findall(r"^#print axioms\s+(\S+)\s*$", audit_text, re.MULTILINE)
+audited = re.findall(
+    r"^[ \t]*#print[ \t]+axioms[ \t]+(\S+)[ \t]*$", audit_text, re.MULTILINE
+)
 if set(audited) != set(names) or len(audited) != len(names):
     missing = sorted(set(names) - set(audited))
     extra = sorted(set(audited) - set(names))
@@ -29,7 +31,9 @@ if set(audited) != set(names) or len(audited) != len(names):
 module_text = "\n".join(
     path.read_text() for path in sorted((ROOT / "APCILeanAudit").glob("*.lean"))
 )
-public_leaves = re.findall(r"^theorem\s+([A-Za-z0-9_']+)", module_text, re.MULTILINE)
+public_leaves = re.findall(
+    r"^[ \t]*theorem[ \t]+([A-Za-z0-9_']+)", module_text, re.MULTILINE
+)
 inventory_leaves = [name.rsplit(".", 1)[-1] for name in names]
 if sorted(public_leaves) != sorted(inventory_leaves):
     missing = sorted(set(public_leaves) - set(inventory_leaves))
