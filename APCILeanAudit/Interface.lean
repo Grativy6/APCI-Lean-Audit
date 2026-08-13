@@ -85,10 +85,10 @@ theorem exactCertificate_iff_fiberConstant_and_decoderSpaceNonempty :
       ⟨decode, hdecode⟩
     classical
     refine ⟨fun t => if ht : ∃ x, trace x = t then
-      decode ⟨t, ht⟩ else fallback t, ?_⟩
+      decode (show Reachable trace from ⟨t, ht⟩) else fallback t, ?_⟩
     intro x
-    rw [dif_pos (show ∃ y, trace y = trace x from ⟨x, rfl⟩)]
-    exact hdecode x
+    have hx : ∃ y, trace y = trace x := ⟨x, rfl⟩
+    simpa only [dif_pos hx] using hdecode x
 
 /-- Convenient total-decoder corollary with a designated fallback answer. -/
 theorem exactCertificate_iff_fiberConstant [Inhabited Answer] :
