@@ -1,5 +1,7 @@
 # APCI Lean Audit
 
+> **Current home:** [APCI in PAL-Lean-Audit](https://github.com/Grativy6/PAL-Lean-Audit/tree/main/projects/APCI). The [shared paper and receipt index](https://github.com/Grativy6/PAL-Lean-Audit/blob/main/papers/INDEX.md) brings the collection together. This repository retains the original published history and citation paths.
+
 This repository machine-checks the finite mathematical core extracted from
 **Abstract-to-Physical Certification Impossibility Run 0001** (APCI-0001).
 It is deliberately smaller than the surrounding conceptual packet.
